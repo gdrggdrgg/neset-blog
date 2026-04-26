@@ -22,12 +22,12 @@ export default function Home() {
   const [yorumBasarili, setYorumBasarili] = useState("");
   const [acilis, setAcilis] = useState(true);
   const [gecis, setGecis] = useState(false);
+  const [makaleAcik, setMakaleAcik] = useState(false);
 
   async function siteyeGir() {
     const ses = new Audio("/baglama.mp3");
     ses.volume = 0.35;
     ses.play().catch(() => {});
-
     setGecis(true);
 
     setTimeout(() => {
@@ -169,24 +169,133 @@ export default function Home() {
             </p>
 
             <h2 className="mt-3 text-4xl font-bold text-yellow-400">
-              Neşet Ertaş Makalesi
+              Neşet Ertaş Türkülerinde Kadın ve Doğa İlişkisi
             </h2>
 
             <p className="mt-4 text-gray-300 leading-8 text-lg">
-              Neşet Ertaş türkülerinde kadın, doğa, sevda ve Anadolu kültürü üzerine hazırlanmış özel çalışma.
+              Bu çalışma, Neşet Ertaş’ın türkülerinde kadının sosyo-kültürel yaşamdaki yerini,
+              doğa ve kültür ilişkisi kapsamında incelemektedir.
             </p>
           </div>
 
-          <div className="mt-8 rounded-2xl border border-yellow-500/20 bg-black p-4 shadow-inner">
-            <iframe
-              src="/neset-ertas-makale.pdf"
-              className="w-full h-[820px] rounded-xl"
-            ></iframe>
-          </div>
+          <article className="mt-8 rounded-2xl border border-yellow-500/20 bg-black/40 p-6 md:p-10 leading-8 text-gray-300">
+
+            <h3 className="text-2xl font-bold text-yellow-400 mb-4">
+              Önsöz
+            </h3>
+
+            <p className="mb-5">
+              Bu çalışma, Neşet Ertaş’ın türkülerinde kadının sosyo-kültürel yaşamdaki yeri,
+              doğa ve kültür ilişkisi kapsamında incelenecektir. Türk halk müziğinin önemli
+              temsilcilerinden Neşet Ertaş’ın eserleri, yalnızca müzikal bir üretim olarak değil,
+              aynı zamanda bireysel yaşam deneyimlerinin ve ait olduğu kültürel çevrenin bir
+              yansıması olarak değerlendirilebilir.
+            </p>
+
+            <p className="mb-5">
+              Bu bağlamda onun türkülerinde geçen kadın ve doğa unsurları hem kişisel hem
+              de toplumsal anlam katmanları barındırmaktadır. Çalışmanın amacı, kadınların
+              karşılaştığı sorunların çözümünde içerdiği anlamsal özellikler bakımından Neşet
+              Ertaş türkülerinin işlevselliğini ortaya koymaktır.
+            </p>
+
+            <h3 className="text-2xl font-bold text-yellow-400 mt-8 mb-4">
+              Giriş
+            </h3>
+
+            <p className="mb-5">
+              Neşet Ertaş’ın sanatı, bireysel yaşam deneyimleri ile içine doğduğu Abdallık
+              geleneğinin kültürel yapısında şekillenen özgün bir anlama sahiptir. Bu nedenle
+              onun türkülerinde karşımıza çıkan kadın ve doğa unsurları yalnızca estetik bir
+              ifade alanı değil; aynı zamanda sanatçının varoluşunu belirleyen tarihsel,
+              sosyolojik ve kültürel dinamiklerin sembolik bir yansımasıdır.
+            </p>
+
+            <p className="mb-5">
+              Kadın, Ertaş’ın sanatında yalnızca sevilen bir “yar” değil; aynı zamanda şefkatin,
+              merhametin ve varoluşun temsilidir. Bu bağlamda kadın imgesi, bir yandan
+              kaybedilenin yasını tutarken, diğer yandan sürekli aranan bir bütünlüğe dönüşür.
+            </p>
+
+            {makaleAcik && (
+              <>
+                <h3 className="text-2xl font-bold text-yellow-400 mt-8 mb-4">
+                  Abdallık Geleneği
+                </h3>
+
+                <p className="mb-5">
+                  Abdallık, yalnızca bir meslek ya da müzikal gelenek değil; aynı zamanda derin
+                  bir tasavvufi dünya görüşünü içeren bir yaşam biçimidir. Bu gelenek, gönül
+                  kırmamayı, insanı incitmemeyi, maddi olandan ziyade manevi olana yönelmeyi
+                  esas alır.
+                </p>
+
+                <p className="mb-5">
+                  Neşet Ertaş, babası Muharrem Ertaş’tan devraldığı bozlak mirasını çocukluğundan
+                  itibaren usta-çırak disipliniyle yoğurmuştur. Kırşehir’in yerel ezgilerini Ankara
+                  ve İstanbul gibi büyükşehirlere taşıyarak Orta Anadolu’ya has bu müzik kültürünün
+                  geniş kitleler tarafından sevilmesine katkı sağlamıştır.
+                </p>
+
+                <h3 className="text-2xl font-bold text-yellow-400 mt-8 mb-4">
+                  Kadın ve Doğa Teması
+                </h3>
+
+                <p className="mb-5">
+                  Neşet Ertaş’ın eserlerinde kadın unsuru, yüzeysel bir romantizmin sınırlarını
+                  aşarak sanatçının düşünsel evrenini ayakta tutan temel varlıksal bir dayanak
+                  noktasına dönüşür. Kadın, yalnızca “yar” vasfıyla beşeri bir aşkın muhatabı
+                  değildir; aynı zamanda “ana” figürüyle yaşamın kutsal kaynağıdır.
+                </p>
+
+                <p className="mb-5">
+                  Ertaş’ın türkülerinde doğa da yalnızca duygusal bir arka plan değil; toplumsal
+                  ve kültürel anlamların yoğunlaştığı sembolik bir düzlemdir. Bozkır, gurbet,
+                  yağmur, gül, bülbül ve güneş gibi imgeler; aşkı, ayrılığı, bağlılığı ve insanın
+                  iç dünyasını anlatan güçlü unsurlara dönüşür.
+                </p>
+
+                <h3 className="text-2xl font-bold text-yellow-400 mt-8 mb-4">
+                  Sonuç
+                </h3>
+
+                <p className="mb-5">
+                  Neşet Ertaş’ın sanat evreninde kadın; anne, yar, şefkat, merhamet ve hayatın
+                  devamlılığı gibi anlamlarla merkezî bir konuma sahiptir. Doğa ise bu anlam
+                  dünyasını tamamlayan, insanın acısını ve sevincini taşıyan canlı bir sembol alanı
+                  olarak karşımıza çıkar.
+                </p>
+
+                <p>
+                  Bu çalışma göstermektedir ki Neşet Ertaş’ın sanatı, kadını ve doğayı hayatın
+                  tam merkezine yerleştirerek Anadolu kültürünün sevgi, saygı ve gönül anlayışını
+                  güçlü biçimde yansıtmaktadır.
+                </p>
+              </>
+            )}
+
+            <div className="mt-8 flex flex-wrap gap-4">
+              <button
+                onClick={() => setMakaleAcik(!makaleAcik)}
+                className="rounded-xl bg-yellow-500 hover:bg-yellow-400 px-6 py-3 font-bold text-black"
+              >
+                {makaleAcik ? "Makaleyi Kısalt" : "Devamını Oku"}
+              </button>
+
+              <a
+                href="/neset-ertas-makale.pdf"
+                target="_blank"
+                className="rounded-xl border border-yellow-500/30 px-6 py-3 font-bold text-yellow-400 hover:bg-yellow-500/10"
+              >
+                PDF Olarak Aç
+              </a>
+            </div>
+
+          </article>
 
           <div className="mt-6 flex items-center gap-3 text-sm text-gray-400">
             <div className="h-[2px] w-12 bg-yellow-500"></div>
-            Blog İçeriği • PDF Makale • Eğitim Projesi
+            Blog İçeriği • Makale • Eğitim Projesi
           </div>
 
         </div>
