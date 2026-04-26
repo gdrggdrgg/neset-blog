@@ -2,11 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { auth } from "../lib/firebase";
+import { auth, db } from "../lib/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword
 } from "firebase/auth";
+import {
+  doc,
+  setDoc,
+  serverTimestamp
+} from "firebase/firestore";
 
 export default function Giris() {
   const [kullaniciAdi, setKullaniciAdi] = useState("");
@@ -37,11 +42,17 @@ export default function Giris() {
     }
 
     try {
-      await createUserWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         auth,
         kullaniciAdiToEmail(kullaniciAdi),
         sifre
       );
+
+      await setDoc(doc(db, "kullanicilar", userCredential.user.uid), {
+        kullaniciAdi: kullaniciAdi.trim(),
+        email: kullaniciAdiToEmail(kullaniciAdi),
+        tarih: serverTimestamp()
+      });
 
       localStorage.setItem("kullaniciAdi", kullaniciAdi.trim());
 

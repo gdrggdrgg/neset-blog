@@ -20,6 +20,7 @@ export default function AdminPanel() {
   const [hata, setHata] = useState("");
 
   const [yorumlar, setYorumlar] = useState([]);
+  const [kullanicilar, setKullanicilar] = useState([]);
   const [arama, setArama] = useState("");
   const [duzenlenenId, setDuzenlenenId] = useState(null);
   const [duzenlenenYorum, setDuzenlenenYorum] = useState("");
@@ -30,12 +31,18 @@ export default function AdminPanel() {
     setYorumlar(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
   }
 
+  async function kullanicilariGetir() {
+    const snap = await getDocs(collection(db, "kullanicilar"));
+    setKullanicilar(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
+  }
+
   function adminGiris() {
     setHata("");
 
     if (kadi === "admin" && sifre === "wvrccxr4e43tt") {
       setGiris(true);
       yorumlariGetir();
+      kullanicilariGetir();
     } else {
       setHata("Kullanıcı adı veya şifre hatalı.");
     }
@@ -137,7 +144,7 @@ export default function AdminPanel() {
               Admin Yönetim Paneli
             </h1>
             <p className="mt-2 text-gray-300">
-              Yorumları yönet, düzenle veya sil.
+              Yorumları ve kayıtlı kullanıcıları yönet.
             </p>
           </div>
 
@@ -158,11 +165,18 @@ export default function AdminPanel() {
           </div>
         </div>
 
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
+        <div className="mt-8 grid gap-5 md:grid-cols-4">
           <div className="rounded-2xl border border-yellow-600/20 bg-[#181818] p-6">
             <p className="text-gray-400">Toplam Yorum</p>
             <h2 className="mt-2 text-4xl font-bold text-yellow-400">
               {yorumlar.length}
+            </h2>
+          </div>
+
+          <div className="rounded-2xl border border-yellow-600/20 bg-[#181818] p-6">
+            <p className="text-gray-400">Kayıtlı Kullanıcı</p>
+            <h2 className="mt-2 text-4xl font-bold text-yellow-400">
+              {kullanicilar.length}
             </h2>
           </div>
 
@@ -178,6 +192,34 @@ export default function AdminPanel() {
             <h2 className="mt-2 text-2xl font-bold text-green-400">
               Aktif
             </h2>
+          </div>
+        </div>
+
+        <div className="mt-8 rounded-3xl border border-yellow-600/20 bg-[#181818] p-6">
+          <h2 className="text-2xl font-bold text-yellow-400">
+            Kayıtlı Kullanıcılar
+          </h2>
+
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            {kullanicilar.map((kisi) => (
+              <div
+                key={kisi.id}
+                className="rounded-2xl border border-yellow-600/10 bg-black/50 p-4"
+              >
+                <p className="text-lg font-bold text-yellow-400">
+                  {kisi.kullaniciAdi}
+                </p>
+                <p className="mt-1 text-sm text-gray-400">
+                  {kisi.email}
+                </p>
+              </div>
+            ))}
+
+            {kullanicilar.length === 0 && (
+              <p className="text-gray-400">
+                Henüz kayıtlı kullanıcı görünmüyor. Bundan sonra kayıt olanlar burada listelenecek.
+              </p>
+            )}
           </div>
         </div>
 
