@@ -362,19 +362,24 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mt-12 rounded-3xl bg-[#181818] border border-yellow-600/20 p-8 shadow-2xl">
-          <h2 className="text-3xl font-bold text-yellow-400">
-            Kültür Evi Video Alanı
-          </h2>
+       <div className="mt-12 rounded-3xl bg-[#181818] border border-yellow-600/20 p-8 shadow-2xl">
+  <h2 className="text-3xl font-bold text-yellow-400">
+    Kültür Evi Video Alanı
+  </h2>
 
-          <p className="mt-4 text-gray-300">
-            Neşet Ertaş Kültür Evi’nden video görüntüsü.
-          </p>
+  <p className="mt-4 text-gray-300">
+    Neşet Ertaş Kültür Evi’nden kısa video görüntüsü.
+  </p>
 
-          <video controls className="mt-6 w-full rounded-2xl border border-yellow-500/20">
-            <source src="/kultur-evi-video.mp4" type="video/mp4" />
-          </video>
-        </div>
+  <div className="mt-6 flex justify-center">
+    <video
+      controls
+      className="w-full max-w-2xl rounded-2xl border border-yellow-500/20 shadow-xl"
+    >
+      <source src="/kultur-evi-video.mp4" type="video/mp4" />
+    </video>
+  </div>
+</div>
 
         <div className="mt-12 rounded-3xl bg-[#181818] border border-yellow-600/20 p-8 shadow-2xl">
           <h2 className="text-3xl font-bold text-yellow-400">Türküler</h2>
