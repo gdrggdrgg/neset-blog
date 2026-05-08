@@ -23,6 +23,30 @@ export default function Home() {
   const [acilis, setAcilis] = useState(true);
   const [gecis, setGecis] = useState(false);
   const [makaleAcik, setMakaleAcik] = useState(false);
+  const [seciliFoto, setSeciliFoto] = useState(null);
+
+  const fotograflar = [
+    "foto1.jpeg",
+    "foto2.jpeg",
+    "foto3.jpeg",
+    "foto4.jpeg",
+    "foto5.jpeg",
+    "foto6.jpeg",
+    "foto7.jpeg",
+    "foto8.jpeg",
+    "foto9.jpeg",
+    "foto10.jpeg",
+    "foto11.jpeg",
+    "foto12.jpeg",
+    "foto13.jpeg",
+    "foto14.jpeg",
+    "foto15.jpeg",
+    "foto16.jpeg",
+    "foto17.jpeg",
+    "foto18.jpeg",
+    "foto19.jpeg",
+    "foto20.jpeg"
+  ];
 
   async function siteyeGir() {
     const ses = new Audio("/baglama.mp3");
@@ -205,7 +229,7 @@ export default function Home() {
 
             <p className="mb-5">
               Neşet Ertaş’ın sanatı, bireysel yaşam deneyimleri ile içine doğduğu Abdallık
-              geleneğinin kültürel yapısında şekillenen özgün bir anlama sahiptir. Bu nedenle
+             eneğinin kültürel yapısında şekillenen özgün bir anlama sahiptir. Bu nedenle
               onun türkülerinde karşımıza çıkan kadın ve doğa unsurları yalnızca estetik bir
               ifade alanı değil; aynı zamanda sanatçının varoluşunu belirleyen tarihsel,
               sosyolojik ve kültürel dinamiklerin sembolik bir yansımasıdır.
@@ -300,6 +324,58 @@ export default function Home() {
 
         </div>
 
+        <div className="mt-12 rounded-3xl bg-[#181818] border border-yellow-600/20 p-8 shadow-2xl overflow-hidden">
+          <div className="rounded-2xl bg-gradient-to-r from-yellow-600/20 via-yellow-400/10 to-transparent p-8 border border-yellow-500/20">
+            <p className="text-sm tracking-[4px] text-yellow-400 uppercase">
+              Fotoğraf Galerisi
+            </p>
+
+            <h2 className="mt-3 text-4xl font-bold text-yellow-400">
+              Neşet Ertaş Kültür Evi
+            </h2>
+
+            <p className="mt-4 text-gray-300 leading-8 text-lg">
+              Kültür evinden kareler, sazlar, şiirler ve Neşet Ertaş’ın sanat mirasına ait özel görüntüler.
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {fotograflar.map((foto, index) => (
+              <button
+                key={foto}
+                onClick={() => setSeciliFoto(foto)}
+                className="group overflow-hidden rounded-2xl border border-yellow-500/20 bg-black shadow-xl text-left"
+              >
+                <img
+                  src={`/${foto}`}
+                  alt={`Neşet Ertaş Kültür Evi ${index + 1}`}
+                  className="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
+                />
+
+                <div className="p-4">
+                  <p className="text-sm text-yellow-400">
+                    Kültür Evi Kareleri #{index + 1}
+                  </p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-12 rounded-3xl bg-[#181818] border border-yellow-600/20 p-8 shadow-2xl">
+          <h2 className="text-3xl font-bold text-yellow-400">
+            Kültür Evi Video Alanı
+          </h2>
+
+          <p className="mt-4 text-gray-300">
+            Neşet Ertaş Kültür Evi’nden video görüntüsü.
+          </p>
+
+          <video controls className="mt-6 w-full rounded-2xl border border-yellow-500/20">
+            <source src="/kultur-evi-video.mp4" type="video/mp4" />
+          </video>
+        </div>
+
         <div className="mt-12 rounded-3xl bg-[#181818] border border-yellow-600/20 p-8 shadow-2xl">
           <h2 className="text-3xl font-bold text-yellow-400">Türküler</h2>
 
@@ -373,6 +449,28 @@ export default function Home() {
         </div>
 
       </section>
+
+      {seciliFoto && (
+        <div
+          onClick={() => setSeciliFoto(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+        >
+          <div className="relative max-h-[90vh] max-w-5xl">
+            <button
+              onClick={() => setSeciliFoto(null)}
+              className="absolute right-2 top-2 rounded-xl bg-red-600 px-4 py-2 font-bold text-white"
+            >
+              Kapat
+            </button>
+
+            <img
+              src={`/${seciliFoto}`}
+              alt="Büyük fotoğraf"
+              className="max-h-[90vh] w-full rounded-2xl object-contain border border-yellow-500/30"
+            />
+          </div>
+        </div>
+      )}
 
       <footer className="border-t border-yellow-700/20 py-8 text-center text-gray-400">
         © Neşet Ertaş Blog
